@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>prometheus-net.WebApi</id>
+    <version>1.0.0</version>
+    <title>prometheus-net.WebApi</title>
+    <authors>Lachlan Barclay</authors>
+    <owners>Lachlan Barclay</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Exposes prometheus metrics inside full framework asp.net applications using WebApi</description>
+    <copyright>Copyright 2020</copyright>
+  </metadata>
+</package>
