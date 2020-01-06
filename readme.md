@@ -35,7 +35,7 @@ public static class WebApiConfig
 }
 ```
 
-# ASP.NET Core HTTP request metrics
+# ASP.NET HTTP request metrics
 
 A HTTP Module is included that exposes some metrics from ASP.NET applications:
 
