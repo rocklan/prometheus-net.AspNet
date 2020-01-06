@@ -13,12 +13,12 @@ To publish your metrics, call `UseMetricsServer` inside your WebApiConfig.Regist
 ```csharp
 public static class WebApiConfig
 {
-	public static void Register(HttpConfiguration config)
-	{
-		config.MapHttpAttributeRoutes();
+    public static void Register(HttpConfiguration config)
+    {
+        config.MapHttpAttributeRoutes();
 
-		PrometheusConfig.UseMetricsServer(config, "metrics");
-	}
+        PrometheusConfig.UseMetricsServer(config, "metrics");
+    }
 }
 ```
 
