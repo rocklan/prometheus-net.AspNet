@@ -22,7 +22,6 @@ public static class WebApiConfig
 }
 ```
 
-
 If you wish to enable Basic Auth protection for your endpoint, pass through the basic auth username and password when calling `UseMetricsServer`:
 ```csharp
 public static class WebApiConfig
