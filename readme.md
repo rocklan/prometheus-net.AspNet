@@ -1,5 +1,5 @@
 # prometheus-net.WebApi
-A library for exposing prometheus metrics with WebApi, running on full framework dot net 4.5 and above.
+A library for exposing prometheus metrics with WebApi, running on full framework dot net 4.5 and above. Basic Auth can also be enabled for the endpoint.
 
 # Installation
 
@@ -15,7 +15,7 @@ public static class WebApiConfig
 {
     public static void Register(HttpConfiguration config)
     {
-        config.MapHttpAttributeRoutes();
+        ...
 
         PrometheusConfig.UseMetricsServer(config, "metrics");
     }
@@ -23,3 +23,15 @@ public static class WebApiConfig
 ```
 
 
+If you wish to enable Basic Auth protection for your endpoint, pass through the basic auth username and password when calling `UseMetricsServer`:
+```csharp
+public static class WebApiConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        ...
+
+        PrometheusConfig.UseMetricsServer(config, "metrics", "BasicAuthUsername", "BasicAuthPassword");
+    }
+}
+```
