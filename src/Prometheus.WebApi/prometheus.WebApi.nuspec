@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>prometheus-net.WebApi</id>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
     <title>prometheus-net.WebApi</title>
     <authors>Lachlan Barclay</authors>
     <owners>Lachlan Barclay</owners>

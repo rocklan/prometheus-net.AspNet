@@ -34,3 +34,23 @@ public static class WebApiConfig
     }
 }
 ```
+
+# ASP.NET Core HTTP request metrics
+
+A HTTP Module is included that exposes some metrics from ASP.NET applications:
+
+* Number of HTTP requests in progress.
+* Total number of received HTTP requests.
+* Duration of HTTP requests.
+
+To include these metrics edit your `global.asax.cs` and add the following lines:
+```csharp
+public class MvcApplication : System.Web.HttpApplication
+{
+    public static IHttpModule Module = new Prometheus.WebApi.PrometheusHttpRequestModule();
+
+    public override void Init()
+    {
+        base.Init();
+        Module.Init(this);
+    }

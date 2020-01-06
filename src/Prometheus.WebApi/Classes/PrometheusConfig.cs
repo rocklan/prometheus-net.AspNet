@@ -34,5 +34,7 @@ namespace Prometheus.WebApi
 
             config.Routes.MapHttpRoute("Prometheus", url, new { controller = "PrometheusMetrics" });
         }
+
+     
     }
 }
