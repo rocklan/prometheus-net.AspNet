@@ -2,7 +2,7 @@
 using System.Web.Http;
 
 
-namespace Prometheus.WebApi
+namespace Prometheus.AspNet
 {
     /// <summary>
     /// Library for configuring Prometheus for WebApi.

@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>prometheus-net.WebApi</id>
+    <id>prometheus-net.AspNet</id>
     <version>1.0.3</version>
-    <title>prometheus-net.WebApi</title>
+    <title>prometheus-net.AspNet</title>
     <authors>Lachlan Barclay</authors>
     <owners>Lachlan Barclay</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

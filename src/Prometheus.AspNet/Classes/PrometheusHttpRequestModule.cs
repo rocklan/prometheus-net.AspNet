@@ -2,14 +2,12 @@
 using System.Diagnostics;
 using System.Web;
 
-
-
-namespace Prometheus.WebApi
+namespace Prometheus.AspNet
 {
     /// <summary>
-    /// Library for monitoring HTTP requests
+    /// Middleware for tracking basic HTTP request info
     /// </summary>
-    public class PerformanceMonitorModule : IHttpModule
+    public class PrometheusHttpRequestModule : IHttpModule
     {
         private static readonly Counter _globalExceptions = Metrics
           .CreateCounter("global_exceptions", "Number of global exceptions.");
@@ -19,6 +17,12 @@ namespace Prometheus.WebApi
 
         private static readonly Gauge _httpRequestsTotal = Metrics
             .CreateGauge("http_requests_received_total", "Provides the count of HTTP requests that have been processed by this app ");
+
+        private static readonly Histogram _httpRequestsDuration = Metrics
+            .CreateHistogram("http_request_duration_seconds", "The duration of HTTP requests processed by this app.",
+                new HistogramConfiguration { LabelNames = new[] { "code", "method", "controller", "action" } });
+
+        private const string _timerKey = "PrometheusHttpRequestModule.Timer";
 
         /// <summary>
         /// 
@@ -33,7 +37,7 @@ namespace Prometheus.WebApi
 
         private void HttpApp_Error(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            _globalExceptions.Inc();
         }
 
         /// <summary>
@@ -46,8 +50,11 @@ namespace Prometheus.WebApi
         {
             var httpApp = (HttpApplication)sender;
             var timer = new Stopwatch();
-            httpApp.Context.Items["Timer"] = timer;
+            httpApp.Context.Items[_timerKey] = timer;
             timer.Start();
+
+            _httpRequestsInProgress.Inc();
+            _httpRequestsTotal.Inc();
         }
 
         /// <summary>
@@ -57,17 +64,36 @@ namespace Prometheus.WebApi
         /// <param name="e"></param>
         public void OnEndRequest(Object sender, EventArgs e)
         {
+            _httpRequestsInProgress.Dec();
+
             var httpApp = (HttpApplication)sender;
-            var timer = (Stopwatch)httpApp.Context.Items["Timer"];
+            var timer = (Stopwatch)httpApp.Context.Items[_timerKey];
 
             if (timer != null)
             {
                 timer.Stop();
-                var timeTakenMs = ((double)timer.ElapsedTicks / Stopwatch.Frequency) * 1000;
 
+                string code = httpApp.Response.StatusCode.ToString();
+                string method = httpApp.Request.HttpMethod;
+                var routeData = httpApp.Request.RequestContext?.RouteData?.Values;
+
+                string controller = String.Empty;
+                string action = String.Empty;
+
+                if (routeData != null)
+                {
+                    if (routeData.ContainsKey("controller"))
+                        controller = routeData["controller"].ToString();
+                    if (routeData.ContainsKey("action"))
+                        action = routeData["action"].ToString();
+                }
+
+                double timeTakenSecs = timer.ElapsedMilliseconds / 1000d;
+
+                _httpRequestsDuration.WithLabels(code, method, controller, action).Observe(timeTakenSecs);
             }
 
-            httpApp.Context.Items.Remove("Timer");
+            httpApp.Context.Items.Remove(_timerKey);
         }
 
         /// <summary>

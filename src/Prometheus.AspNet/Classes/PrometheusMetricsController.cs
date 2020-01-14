@@ -12,7 +12,7 @@ using Prometheus;
 using System.IO;
 
 
-namespace Prometheus.WebApi
+namespace Prometheus.AspNet
 {
     /// <summary>
     /// Class for serving up prometheus metrics

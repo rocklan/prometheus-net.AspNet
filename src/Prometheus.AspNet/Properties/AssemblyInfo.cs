@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Prometheus.WebApi")]
+[assembly: AssemblyTitle("Prometheus.AspNet")]
 [assembly: AssemblyDescription("Exports prometheus web metrics")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Prometheus.WebApi")]
+[assembly: AssemblyProduct("Prometheus.AspNet")]
 [assembly: AssemblyCopyright("Copyright ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

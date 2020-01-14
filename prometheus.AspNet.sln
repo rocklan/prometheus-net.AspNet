@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prometheus.WebApi", "src\Prometheus.WebApi\Prometheus.WebApi.csproj", "{D47CE1F2-949B-452E-B446-6A977C64F105}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prometheus.AspNet", "src\Prometheus.AspNet\Prometheus.AspNet.csproj", "{D47CE1F2-949B-452E-B446-6A977C64F105}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prometheus.EntityFramework", "src\prometheus.EntityFramework\Prometheus.EntityFramework.csproj", "{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D47CE1F2-949B-452E-B446-6A977C64F105}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D47CE1F2-949B-452E-B446-6A977C64F105}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D47CE1F2-949B-452E-B446-6A977C64F105}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
