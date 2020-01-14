@@ -1,10 +1,10 @@
-# prometheus-net.WebApi
-A library for exposing prometheus metrics with WebApi, running on full framework dot net 4.5 and above. Basic Auth can also be enabled for the endpoint.
+# prometheus-net.AspNet
+A library for exposing prometheus metrics on full framework dot net 4.5 and above. Basic Auth can also be enabled for the endpoint. Also contains a library for logging SQL calls if using Entity Framework 6.
 
 # Installation
 
-Add the packge from [nuget](https://www.nuget.org/packages/prometheus-net.WebApi):
->Install-Package: [prometheus-net.WebApi](https://www.nuget.org/packages/prometheus-net.WebApi)
+Add the packge from [nuget](https://www.nuget.org/packages/prometheus-net.AspNet):
+>Install-Package: [prometheus-net.AspNet](https://www.nuget.org/packages/prometheus-net.AspNet)
 
 # Usage
 
@@ -47,7 +47,7 @@ To include these metrics edit your `global.asax.cs` and add the following lines:
 ```csharp
 public class MvcApplication : System.Web.HttpApplication
 {
-    public static IHttpModule Module = new Prometheus.WebApi.PrometheusHttpRequestModule();
+    public static IHttpModule Module = new Prometheus.AspNet.PrometheusHttpRequestModule();
 
     public override void Init()
     {
