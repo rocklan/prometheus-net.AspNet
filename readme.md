@@ -54,3 +54,6 @@ public class MvcApplication : System.Web.HttpApplication
         base.Init();
         Module.Init(this);
     }
+```
+
+These metrics include labels for HTTP status code (eg, 200), HTTP method (eg, POST), Controller and Action.
