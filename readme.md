@@ -6,8 +6,9 @@ A plugin for the [prometheus-net](https://github.com/prometheus-net/prometheus-n
 
 # Installation
 
-Add the packge from [nuget](https://www.nuget.org/packages/prometheus-net.AspNet):
+Add the package from [nuget](https://www.nuget.org/packages/prometheus-net.AspNet):
 >Install-Package: [prometheus-net.AspNet](https://www.nuget.org/packages/prometheus-net.AspNet)
+
 If you are using Entity Framework 6 and wish to collect SQL metrics: [nuget](https://www.nuget.org/packages/prometheus-net.EF):
 >Install-Package: [prometheus-net.EF](https://www.nuget.org/packages/prometheus-net.EF)
 
