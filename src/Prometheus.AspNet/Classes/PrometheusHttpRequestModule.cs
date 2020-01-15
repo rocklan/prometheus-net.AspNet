@@ -16,7 +16,8 @@ namespace Prometheus.AspNet
             .CreateGauge("http_requests_in_progress", "The number of HTTP requests currently in progress");
 
         private static readonly Gauge _httpRequestsTotal = Metrics
-            .CreateGauge("http_requests_received_total", "Provides the count of HTTP requests that have been processed by this app ");
+            .CreateGauge("http_requests_received_total", "Provides the count of HTTP requests that have been processed by this app",
+                new GaugeConfiguration { LabelNames = new[] { "code", "method", "controller", "action" } });
 
         private static readonly Histogram _httpRequestsDuration = Metrics
             .CreateHistogram("http_request_duration_seconds", "The duration of HTTP requests processed by this app.",
@@ -48,13 +49,12 @@ namespace Prometheus.AspNet
         // Record the time of the begin request event.
         public void OnBeginRequest(Object sender, EventArgs e)
         {
+            _httpRequestsInProgress.Inc();
+
             var httpApp = (HttpApplication)sender;
             var timer = new Stopwatch();
             httpApp.Context.Items[_timerKey] = timer;
             timer.Start();
-
-            _httpRequestsInProgress.Inc();
-            _httpRequestsTotal.Inc();
         }
 
         /// <summary>
@@ -91,6 +91,7 @@ namespace Prometheus.AspNet
                 double timeTakenSecs = timer.ElapsedMilliseconds / 1000d;
 
                 _httpRequestsDuration.WithLabels(code, method, controller, action).Observe(timeTakenSecs);
+                _httpRequestsTotal.WithLabels(code, method, controller, action).Inc();
             }
 
             httpApp.Context.Items.Remove(_timerKey);
@@ -101,4 +102,5 @@ namespace Prometheus.AspNet
         /// </summary>
         public void Dispose() { /* Not needed */ }
     }
+
 }

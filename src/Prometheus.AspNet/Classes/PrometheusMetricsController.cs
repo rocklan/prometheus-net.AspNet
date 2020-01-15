@@ -30,23 +30,34 @@ namespace Prometheus.AspNet
         [HttpGet]
         public async Task<HttpResponseMessage> AppMetrics()
         {
-            if (UseBasicAuth && !BasicAuthIsOk())
-                return new HttpResponseMessage { StatusCode = HttpStatusCode.Unauthorized };
-
-            using (MemoryStream ms = new MemoryStream())
+            try
             {
-                await Metrics.DefaultRegistry.CollectAndExportAsTextAsync(ms);
-                ms.Position = 0;
+                if (UseBasicAuth && !BasicAuthIsOk())
+                    return new HttpResponseMessage { StatusCode = HttpStatusCode.Unauthorized };
 
-                using (StreamReader sr = new StreamReader(ms))
+                using (MemoryStream ms = new MemoryStream())
                 {
-                    var allmetrics = await sr.ReadToEndAsync();
+                    await Metrics.DefaultRegistry.CollectAndExportAsTextAsync(ms);
+                    ms.Position = 0;
 
-                    return new HttpResponseMessage()
+                    using (StreamReader sr = new StreamReader(ms))
                     {
-                        Content = new StringContent(allmetrics, Encoding.UTF8, "text/plain")
-                    };
+                        var allmetrics = await sr.ReadToEndAsync();
+
+                        return new HttpResponseMessage()
+                        {
+                            Content = new StringContent(allmetrics, Encoding.UTF8, "text/plain")
+                        };
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                return new HttpResponseMessage()
+                {
+                    Content = new StringContent(e.ToString(), Encoding.UTF8, "text/plain"),
+                    StatusCode = HttpStatusCode.InternalServerError
+                };
             }
         }
 

@@ -65,7 +65,7 @@ A DbCommandInterceptor has been written to track SQL query performance.
 To use, add a DbConfigurationType attribute to your DbContext and specify the PrometheusEF6CodeConfig class:
 
 ```csharp
-[DbConfigurationType(typeof(Prometheus.EntityFramework.PrometheusEF6CodeConfig))]
+[DbConfigurationType("Prometheus.EF.PrometheusEF6CodeConfig, Prometheus.EF")]
 public partial class MyDbContext : DbContext
 {
 	....

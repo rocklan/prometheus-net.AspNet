@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity;
 
-namespace Prometheus.EntityFramework
+namespace Prometheus.EF
 {
     /// <summary>
     /// Configuration class to add prometheus metrics to your DbContext. To use, add [DbConfigurationType(typeof(PrometheusEF6CodeConfig))] 

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Prometheus.EntityFramework
+namespace Prometheus.EF
 {
     /// <summary>
     /// DBCommandInterceptor that times SQL calls and then exposes them as prometheus metrics
@@ -15,7 +15,8 @@ namespace Prometheus.EntityFramework
     public class PrometheusEFLoggerForMetrics : IDbCommandInterceptor
     {
         private static readonly Gauge _sqlRequestsTotal = Metrics
-            .CreateGauge("sql_requests_made_total", "Provides the count of SQL requests that have been executed by this app");
+            .CreateGauge("sql_requests_made_total", "Provides the count of SQL requests that have been executed by this app",
+                new GaugeConfiguration { LabelNames = new[] { "database", "querytype", "success" } });
 
         private static readonly Histogram _sqlRequestsDuration = Metrics
             .CreateHistogram("sql_request_duration_seconds", "The duration of SQL queries processed by this app.",
@@ -55,8 +56,6 @@ namespace Prometheus.EntityFramework
 
         private void Log<T>(DbCommand command, DbCommandInterceptionContext<T> interceptionContext)
         {
-            _sqlRequestsTotal.Inc();
-
             TimeSpan duration = (m_StartTime.TryRemove(command, out DateTime startTime)) ?
             DateTime.Now - startTime :
             TimeSpan.Zero;
@@ -71,6 +70,7 @@ namespace Prometheus.EntityFramework
 
             string wasSuccess = interceptionContext.Exception == null ? "true" : "false";
 
+            _sqlRequestsTotal.WithLabels(command.Connection.Database, queryType, wasSuccess).Inc();
             _sqlRequestsDuration.WithLabels(command.Connection.Database, queryType, wasSuccess).Observe(duration.TotalSeconds);
         }
 

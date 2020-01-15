@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prometheus.AspNet", "src\Prometheus.AspNet\Prometheus.AspNet.csproj", "{D47CE1F2-949B-452E-B446-6A977C64F105}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prometheus.EntityFramework", "src\prometheus.EntityFramework\Prometheus.EntityFramework.csproj", "{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prometheus.EF", "src\prometheus.EntityFramework\Prometheus.EF.csproj", "{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

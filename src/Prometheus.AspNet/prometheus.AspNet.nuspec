@@ -2,12 +2,13 @@
 <package >
   <metadata>
     <id>prometheus-net.AspNet</id>
-    <version>1.0.3</version>
+    <version>1.0.5</version>
     <title>prometheus-net.AspNet</title>
     <authors>Lachlan Barclay</authors>
     <owners>Lachlan Barclay</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Exposes prometheus metrics inside full framework asp.net applications using WebApi</description>
     <copyright>Copyright 2020</copyright>
+    
   </metadata>
 </package>

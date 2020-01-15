@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>prometheus-net.EntityFramework</id>
-    <version>1.0.0</version>
-    <title>prometheus-net.EntityFramework</title>
+    <id>prometheus-net.EF</id>
+    <version>1.0.1</version>
+    <title>prometheus-net.EF</title>
     <authors>Lachlan Barclay</authors>
     <owners>Lachlan Barclay</owners>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>

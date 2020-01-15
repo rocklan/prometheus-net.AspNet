@@ -7,8 +7,8 @@
     <ProjectGuid>{79DEC54F-0EE4-40FE-BC15-00A5DD56CFA6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Prometheus.EntityFramework</RootNamespace>
-    <AssemblyName>Prometheus.EntityFramework</AssemblyName>
+    <RootNamespace>Prometheus.EF</RootNamespace>
+    <AssemblyName>Prometheus.EF</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Prometheus.EntityFramework.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Prometheus.EF.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -60,7 +60,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-    <None Include="prometheus.EntityFramework.nuspec" />
+    <None Include="prometheus.EF.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
