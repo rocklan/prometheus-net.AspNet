@@ -1,5 +1,5 @@
 # prometheus-net.AspNet
-A library for exposing prometheus metrics on full framework dot net 4.5 and above. Basic Auth can also be enabled for the endpoint. Also contains a library for logging SQL calls if using Entity Framework 6.
+A library for collecting ASP.NET metrics and exposing them as prometheus metrics on full framework dot net 4.5 and above. Basic Auth can also be enabled for the endpoint. Can also collect metrics on SQL database calls if using Entity Framework 6.
 
 # Installation
 
@@ -64,14 +64,13 @@ A DbCommandInterceptor has been written to track SQL query performance.
 
 To use, add a DbConfigurationType attribute to your DbContext and specify the PrometheusEF6CodeConfig class:
 
-```
-
+```csharp
 [DbConfigurationType(typeof(Prometheus.EntityFramework.PrometheusEF6CodeConfig))]
 public partial class MyDbContext : DbContext
 {
 	....
 }
-````
+```
 
 These metrics include SQL timing information and the following labels:
 
