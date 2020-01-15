@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace Prometheus.EntityFramework
 {
+    /// <summary>
+    /// DBCommandInterceptor that times SQL calls and then exposes them as prometheus metrics
+    /// </summary>
     public class PrometheusEFLoggerForMetrics : IDbCommandInterceptor
     {
         private static readonly Gauge _sqlRequestsTotal = Metrics
@@ -20,16 +23,31 @@ namespace Prometheus.EntityFramework
 
         static readonly ConcurrentDictionary<DbCommand, DateTime> m_StartTime = new ConcurrentDictionary<DbCommand, DateTime>();
 
+        /// <summary>
+        /// Executes when a reader is executed
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="interceptionContext"></param>
         public void ReaderExecuted(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
             Log(command, interceptionContext);
         }
 
+        /// <summary>
+        /// Executes when a non query is executed (eg, update)
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="interceptionContext"></param>
         public void NonQueryExecuted(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
         {
             Log(command, interceptionContext);
         }
 
+        /// <summary>
+        /// Executes when a scalar execute is executed (update and we want to see how many)
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="interceptionContext"></param>
         public void ScalarExecuted(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
         {
             Log(command, interceptionContext);
@@ -56,21 +74,36 @@ namespace Prometheus.EntityFramework
             _sqlRequestsDuration.WithLabels(command.Connection.Database, queryType, wasSuccess).Observe(duration.TotalSeconds);
         }
 
-
+        /// <summary>
+        /// Called when non query has started executing
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="interceptionContext"></param>
         public void NonQueryExecuting(DbCommand command, DbCommandInterceptionContext<int> interceptionContext)
         {
             OnStart(command);
         }
 
+        /// <summary>
+        /// Called when a reader command has started executing
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="interceptionContext"></param>
         public void ReaderExecuting(DbCommand command, DbCommandInterceptionContext<DbDataReader> interceptionContext)
         {
             OnStart(command);
         }
 
+        /// <summary>
+        /// Called when a scalar command has started executing
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="interceptionContext"></param>
         public void ScalarExecuting(DbCommand command, DbCommandInterceptionContext<object> interceptionContext)
         {
             OnStart(command);
         }
+
         private static void OnStart(DbCommand command)
         {
             m_StartTime.TryAdd(command, DateTime.Now);

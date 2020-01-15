@@ -57,3 +57,26 @@ public class MvcApplication : System.Web.HttpApplication
 ```
 
 These metrics include labels for HTTP status code (eg, 200), HTTP method (eg, POST), Controller and Action.
+
+# Entity Framework 6 SQL Metrics
+
+A DbCommandInterceptor has been written to track SQL query performance.
+
+To use, add a DbConfigurationType attribute to your DbContext and specify the PrometheusEF6CodeConfig class:
+
+```
+
+[DbConfigurationType(typeof(Prometheus.EntityFramework.PrometheusEF6CodeConfig))]
+public partial class MyDbContext : DbContext
+{
+	....
+}
+````
+
+These metrics include SQL timing information and the following labels:
+
+* database - the DB that the query was executed against
+* querytype - INSERT, SELECT, UPDATE or DELETE (or empty if not known)
+* success - either "true" or "false" indicating query was successful
+	
+	
