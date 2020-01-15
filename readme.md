@@ -1,5 +1,8 @@
 # prometheus-net.AspNet
-A library for collecting ASP.NET metrics and exposing them as prometheus metrics on full framework dot net 4.5 and above. Basic Auth can also be enabled for the endpoint. Can also collect metrics on SQL database calls if using Entity Framework 6.
+A plugin for the [prometheus-net](https://github.com/prometheus-net/prometheus-net) package, exposing ASP.NET full framework metrics. Basic Auth can also be enabled for the endpoint. Can also collect metrics on SQL database calls if using Entity Framework 6.
+
+![](screenshot1.png)
+![](screenshot2.png)
 
 # Installation
 
