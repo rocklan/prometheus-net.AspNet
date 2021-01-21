@@ -14,6 +14,8 @@ If you are using Entity Framework 6 and wish to collect SQL metrics: [nuget](htt
 
 # Usage
 
+## Asp.Net project with WebApi
+
 To publish your metrics, call `UseMetricsServer` inside your WebApiConfig.Register method, and specify the endpoint. The following code will expose http://localhost/metrics  
 
 ```csharp
@@ -27,6 +29,53 @@ public static class WebApiConfig
     }
 }
 ```
+
+## Asp.Net project with Owin
+
+Add two nuget packages:
+
+* Microsoft.Owin.Host.SystemWeb
+* Microsoft.AspNet.WebApi.Owin
+
+And then change your `Startup.cs` to look something like this:
+
+```
+[assembly: OwinStartup(typeof(WebApplication1.Startup))]
+namespace WebApplication1
+{
+    public class Startup
+    {
+        public void Configuration(IAppBuilder app)
+        {
+            HttpConfiguration httpConfiguration = new HttpConfiguration();
+            WebApiConfig.Register(httpConfiguration);
+            app.UseWebApi(httpConfiguration);
+        }
+    }
+
+    public class WebApiConfig
+    {
+        public static void Register(HttpConfiguration config)
+        {
+            // add your normal routing here
+            config.Routes.MapHttpRoute( ... );
+
+            // register metrics endpoint:
+            PrometheusConfig.UseMetricsServer(config, "metrics");
+        }
+    }
+}
+```
+
+## Console app with OWIN
+
+Follow [this guide](https://docs.microsoft.com/en-us/aspnet/web-api/overview/hosting-aspnet-web-api/use-owin-to-self-host-web-api) to setup OWIN inside your console application, and then add this line to the bottom of your `Startup.Configuration` method:
+
+```
+PrometheusConfig.UseMetricsServer(config, "metrics");
+```
+
+# Basic Auth
 
 If you wish to enable Basic Auth protection for your endpoint, pass through the basic auth username and password when calling `UseMetricsServer`:
 ```csharp
