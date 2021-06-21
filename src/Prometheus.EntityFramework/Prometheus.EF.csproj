@@ -39,12 +39,18 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Prometheus.NetStandard, Version=3.0.0.0, Culture=neutral, PublicKeyToken=a243e9817ba9d559, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\prometheus-net.3.1.0\lib\netstandard2.0\Prometheus.NetStandard.dll</HintPath>
+    <Reference Include="mscorlib" />
+    <Reference Include="Prometheus.NetStandard, Version=4.0.0.0, Culture=neutral, PublicKeyToken=a243e9817ba9d559">
+      <HintPath>..\..\packages\prometheus-net.4.1.1\lib\net461\Prometheus.NetStandard.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
