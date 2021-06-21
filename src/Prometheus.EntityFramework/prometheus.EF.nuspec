@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>prometheus-net.EF</id>
+    <id>movidesk-prometheus-net.EF</id>
     <version>1.0.0</version>
     <title>prometheus-net.EF</title>
     <authors>Lachlan Barclay</authors>
@@ -9,8 +9,9 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Collects Entity Framework 6 SQL query performance and exposes them as prometheus metrics.</description>
     <copyright>Copyright 2020</copyright>
-    <iconUrl>https://raw.githubusercontent.com/rocklan/prometheus-net.AspNet/master/prometheus-net-logo.png</iconUrl>
-    <repository type="git" url="https://github.com/rocklan/prometheus-net.AspNet.git" branch="master" />
+    <iconUrl>https://raw.githubusercontent.com/movidesk/prometheus-net.AspNet/master/prometheus-net-logo.png</iconUrl>
+    <repository type="git" url="https://github.com/movidesk/prometheus-net.AspNet" branch="master" />
     <projectUrl>https://github.com/rocklan/prometheus-net.AspNet</projectUrl>
+    <tags>movidesk-prometheus-net.EF</tags>
   </metadata>
 </package>
