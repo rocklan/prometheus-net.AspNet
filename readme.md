@@ -5,9 +5,11 @@ A plugin for the [prometheus-net](https://github.com/prometheus-net/prometheus-n
 ![](screenshot2.png)
 
 # Movidesk pack and publish
+```
 https://www.youtube.com/watch?v=xPm9FsptuE8
 nuget pack
 nuget push movidesk-prometheus-net.AspNet.1.0.0.nupkg key -Source github
+```
 
 # Installation
 
