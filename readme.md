@@ -1,3 +1,4 @@
+![](prometheus-net-logo.png)
 # prometheus-net.AspNet
 A plugin for the [prometheus-net](https://github.com/prometheus-net/prometheus-net) package, exposing ASP.NET full framework metrics. Basic Auth can also be enabled for the endpoint. Can also collect metrics on SQL database calls if using Entity Framework 6.
 
