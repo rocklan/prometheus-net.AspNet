@@ -6,10 +6,17 @@ A plugin for the [prometheus-net](https://github.com/prometheus-net/prometheus-n
 ![](screenshot2.png)
 
 # Movidesk pack and publish
-```
+```ps1
+# version <= 1.1.0
 https://www.youtube.com/watch?v=xPm9FsptuE8
 nuget pack
-nuget push movidesk-prometheus-net.AspNet.x.x.x.nupkg personal_github_token -Source github
+nuget push movidesk-prometheus-net.AspNet.x.x.x.nupkg  personal_github_token -Source github
+
+# version >= 1.1.1
+cd .\src\Prometheus.AspNet\
+dotnet build --configuration Release
+dotnet pack --configuration Release
+dotnet nuget push .\bin\Release\movidesk-prometheus-net.AspNet.x.x.x.nupkg --api-key ghp_xxxxxxxx --source github
 ```
 
 # Installation

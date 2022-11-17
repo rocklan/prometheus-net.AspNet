@@ -5,14 +5,14 @@
     <Product>prometheus.EF</Product>
     <Description>Collects Entity Framework 6 SQL query performance and exposes them as prometheus metrics.</Description>
     <Copyright>Copyright 2022</Copyright>
-    <Version>1.2.0</Version>
+    <Version>1.1.1</Version>
     <AssemblyVersion>1.1.1.0</AssemblyVersion>
     <FileVersion>1.1.1.0</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>Lachlan Barclay</Authors>
     <PackageIcon>prometheus-net-logo.png</PackageIcon>
     <PackageId>movidesk-prometheus-net.EF</PackageId>
-    <PackageProjectUrl>https://github.com/rocklan/prometheus-net.AspNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/movidesk/prometheus-net.AspNet</RepositoryUrl>
     <PackageTags>movidesk-prometheus-net.EF</PackageTags>
     <TargetFrameworks>net471;net472;net48;net481</TargetFrameworks>
     <PackageVersion>1.1.1</PackageVersion>
@@ -34,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="prometheus-net" Version="6.0.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="prometheus-net" Version="4.2.0" />
   </ItemGroup>
 </Project>

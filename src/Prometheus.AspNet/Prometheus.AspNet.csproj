@@ -7,7 +7,7 @@
     <Product>Prometheus.AspNet</Product>
     <Description>Exposes prometheus metrics inside full framework asp.net applications using WebApi</Description>
     <Copyright>Copyright 2022</Copyright>
-    <Version>1.2.0</Version>
+    <Version>1.1.1</Version>
     <AssemblyVersion>1.1.1.0</AssemblyVersion>
     <FileVersion>1.1.1.0</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
@@ -15,7 +15,7 @@
     <Authors>Lachlan Barclay</Authors>
     <PackageIcon>prometheus-net-logo.png</PackageIcon>
     <PackageId>movidesk-prometheus-net.AspNet</PackageId>
-    <PackageProjectUrl>https://github.com/rocklan/prometheus-net.AspNet</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/movidesk/prometheus-net.AspNet</RepositoryUrl>
     <PackageTags>movidesk-prometheus-net.AspNet</PackageTags>
     <TargetFrameworks>net471;net472;net48;net481</TargetFrameworks>
     <PackageVersion>1.1.1</PackageVersion>
@@ -38,7 +38,6 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Client" Version="5.2.9" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.9" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="prometheus-net" Version="6.0.0" />
-    <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+    <PackageReference Include="prometheus-net" Version="4.2.0" />
   </ItemGroup>
 </Project>
