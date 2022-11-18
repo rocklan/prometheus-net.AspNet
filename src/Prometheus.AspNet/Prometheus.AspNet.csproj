@@ -7,9 +7,9 @@
     <Product>Prometheus.AspNet</Product>
     <Description>Exposes prometheus metrics inside full framework asp.net applications using WebApi</Description>
     <Copyright>Copyright 2022</Copyright>
-    <Version>1.1.1</Version>
-    <AssemblyVersion>1.1.1.0</AssemblyVersion>
-    <FileVersion>1.1.1.0</FileVersion>
+    <Version>4.2.0</Version>
+    <AssemblyVersion>4.2.0.0</AssemblyVersion>
+    <FileVersion>4.2.0.0</FileVersion>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <DocumentationFile>bin\$(Configuration)\prometheus.AspNet.xml</DocumentationFile>
     <Authors>Lachlan Barclay</Authors>
@@ -18,7 +18,7 @@
     <RepositoryUrl>https://github.com/movidesk/prometheus-net.AspNet</RepositoryUrl>
     <PackageTags>movidesk-prometheus-net.AspNet</PackageTags>
     <TargetFrameworks>net471;net472;net48;net481</TargetFrameworks>
-    <PackageVersion>1.1.1</PackageVersion>
+    <PackageVersion>4.2.0</PackageVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
