@@ -1,8 +1,23 @@
+![](prometheus-net-logo.png)
 # prometheus-net.AspNet
 A plugin for the [prometheus-net](https://github.com/prometheus-net/prometheus-net) package, exposing ASP.NET full framework metrics. Basic Auth can also be enabled for the endpoint. Can also collect metrics on SQL database calls if using Entity Framework 6.
 
 ![](screenshot1.png)
 ![](screenshot2.png)
+
+# Movidesk pack and publish
+```ps1
+# version <= 1.1.0
+https://www.youtube.com/watch?v=xPm9FsptuE8
+nuget pack
+nuget push movidesk-prometheus-net.AspNet.x.x.x.nupkg  personal_github_token -Source github
+
+# version >= 1.1.1
+cd .\src\Prometheus.AspNet\
+dotnet build --configuration Release
+dotnet pack --configuration Release
+dotnet nuget push .\bin\Release\movidesk-prometheus-net.AspNet.x.x.x.nupkg --api-key ghp_xxxxxxxx --source github
+```
 
 # Installation
 

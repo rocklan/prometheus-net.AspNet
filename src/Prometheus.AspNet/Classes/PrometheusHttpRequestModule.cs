@@ -9,24 +9,83 @@ namespace Prometheus.AspNet
     /// </summary>
     public class PrometheusHttpRequestModule : IHttpModule
     {
-        private static readonly Counter _globalExceptions = Metrics
-          .CreateCounter("global_exceptions", "Number of global exceptions.");
-
-        private static readonly Gauge _httpRequestsInProgress = Metrics
-            .CreateGauge("http_requests_in_progress", "The number of HTTP requests currently in progress");
-
-        private static readonly Gauge _httpRequestsTotal = Metrics
-            .CreateGauge("http_requests_received_total", "Provides the count of HTTP requests that have been processed by this app",
-                new GaugeConfiguration { LabelNames = new[] { "code", "method", "controller", "action" } });
-
-        private static readonly Histogram _httpRequestsDuration = Metrics
-            .CreateHistogram("http_request_duration_seconds", "The duration of HTTP requests processed by this app.",
-                new HistogramConfiguration { LabelNames = new[] { "code", "method", "controller", "action" } });
-
+        private static Counter _globalExceptions;
+        private static Gauge _httpRequestsInProgress;
+        private static Gauge _httpRequestsTotal;
+        private static Histogram _httpRequestsDuration;
         private const string _timerKey = "PrometheusHttpRequestModule.Timer";
 
         /// <summary>
-        /// 
+        ///
+        /// </summary>
+        public PrometheusHttpRequestModule()
+        {
+            if (_globalExceptions == null)
+            {
+                _globalExceptions = Metrics
+                    .CreateCounter("global_exceptions", "Number of global exceptions.");
+            }
+
+            if (_httpRequestsInProgress == null)
+            {
+                _httpRequestsInProgress = Metrics
+                    .CreateGauge("http_requests_in_progress", "The number of HTTP requests currently in progress");
+            }
+
+            if (_httpRequestsTotal == null)
+            {
+                _httpRequestsTotal = Metrics
+                    .CreateGauge("http_requests_received_total", "Provides the count of HTTP requests that have been processed by this app",
+                        new GaugeConfiguration {LabelNames = new[] {"code", "method", "controller", "action"}});
+            }
+
+            if (_httpRequestsDuration == null)
+            {
+                _httpRequestsDuration = Metrics
+                    .CreateHistogram("http_request_duration_seconds", "The duration of HTTP requests processed by this app.",
+                        new HistogramConfiguration {LabelNames = new[] {"code", "method", "controller", "action"}});
+            }
+        }
+
+        /// <summary>
+        ///
+        /// </summary>
+        /// <param name="bucektSize"></param>
+        public PrometheusHttpRequestModule(double[] bucektSize)
+        {
+            if (_globalExceptions == null)
+            {
+                _globalExceptions = Metrics
+                    .CreateCounter("global_exceptions", "Number of global exceptions.");
+            }
+
+            if (_httpRequestsInProgress == null)
+            {
+                _httpRequestsInProgress = Metrics
+                    .CreateGauge("http_requests_in_progress", "The number of HTTP requests currently in progress");
+            }
+
+            if (_httpRequestsTotal == null)
+            {
+                _httpRequestsTotal = Metrics
+                    .CreateGauge("http_requests_received_total", "Provides the count of HTTP requests that have been processed by this app",
+                        new GaugeConfiguration {LabelNames = new[] {"code", "method", "controller", "action"}});
+            }
+
+            if (_httpRequestsDuration == null)
+            {
+                _httpRequestsDuration = Metrics
+                    .CreateHistogram("http_request_duration_seconds", "The duration of HTTP requests processed by this app.",
+                        new HistogramConfiguration
+                        {
+                            LabelNames = new[] {"code", "method", "controller", "action"},
+                            Buckets = bucektSize
+                        });
+            }
+        }
+
+        /// <summary>
+        ///
         /// </summary>
         /// <param name="httpApp"></param>
         public void Init(HttpApplication httpApp)
@@ -42,12 +101,12 @@ namespace Prometheus.AspNet
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         // Record the time of the begin request event.
-        public void OnBeginRequest(Object sender, EventArgs e)
+        private void OnBeginRequest(Object sender, EventArgs e)
         {
             _httpRequestsInProgress.Inc();
 
@@ -58,11 +117,11 @@ namespace Prometheus.AspNet
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void OnEndRequest(Object sender, EventArgs e)
+        private void OnEndRequest(Object sender, EventArgs e)
         {
             _httpRequestsInProgress.Dec();
 
@@ -98,7 +157,7 @@ namespace Prometheus.AspNet
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void Dispose() { /* Not needed */ }
     }
